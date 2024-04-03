@@ -7,6 +7,7 @@
     <title>Contact Us</title>
 
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='responsive.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -55,9 +56,10 @@
                         <div class="msg"><textarea name="message" placeholder="Message"></textarea> {% if error_messages and 'message' in error_messages %}
                             <span style="color: red;">{{ error_messages['message'] }}</span> {% endif %}</div>
                         <input type="submit" value="Submit &#10132;"></div>
+                    {% if success_message %}
+                    <span style="color: green;" id="successMessage">{{ success_message }}</span> {% endif %}
                 </form>
-                {% if success_message %}
-                <span style="color: green;" id="successMessage">{{ success_message }}</span> {% endif %}
+
             </div>
         </div>
     </div>
