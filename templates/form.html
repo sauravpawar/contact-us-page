@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='responsive.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    <header>
+
+        <!-------navbar logo section ----------->
+        <section>
+            <div class="nav">
+                <div class="ndt-logo">
+                    <img src="{{url_for('static',filename='images/logo.png')}}" alt="ndt-logo">
+                </div>
+            </div>
+        </section>
+    </header>
+
+    <!---------form section ----------------->
+    <div class="form-outer">
+        <div class="form-inner">
+            <div class="left-form">
+                <p id="form-p-one">Got any questions?</p>
+                <p id="form-p-two">Let’s discuss it over a cup of coffee.</p>
+            </div>
+
+            <div class="right-form">
+                <form method="POST" action="/submit" id="contactForm">
+                    <div class="form-one">
+                        <div class="name">
+                            <input type="text" name="name" placeholder="Name"> {% if error_messages and 'name' in error_messages %}
+                            <span style="color: red;">{{ error_messages['name'] }}</span> {% endif %}
+                        </div>
+                        <div class="org"><input type="text" name="organization" placeholder="Organization Name"> {% if error_messages and 'organization' in error_messages %}
+                            <span style="color: red;">{{ error_messages['organization'] }}</span> {% endif %}
+                        </div>
+                    </div>
+                    <div class="form-two">
+                        <div class="email"><input type="email" name="email" placeholder="Email ID"> {% if error_messages and 'email' in error_messages %}
+                            <span style="color: red;">{{ error_messages['email'] }}</span> {% endif %}</div>
+                        <div class="phone"><input type="tel" name="phone" placeholder="Contact Number"> {% if error_messages and 'phone' in error_messages %}
+                            <span style="color: red;">{{ error_messages['phone'] }}</span> {% endif %}</div>
+                    </div>
+                    <div class="form-three">
+                        <div class="msg"><textarea name="message" placeholder="Message"></textarea> {% if error_messages and 'message' in error_messages %}
+                            <span style="color: red;">{{ error_messages['message'] }}</span> {% endif %}</div>
+                        <input type="submit" value="Submit &#10132;"></div>
+                    {% if success_message %}
+                    <span style="color: green;" id="successMessage">{{ success_message }}</span> {% endif %}
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+    <!---------location section ------------>
+    <section>
+        <div class="map">
+            <div class="addr-box">
+                <div class="inner-box">
+                    <p class="addr-first">OnestopNDT</p><br>
+                    <p class="addr-sec">PAP/R/406 Rabale MIDC Near Dol Electric Company Rabale MIDC, Navi Mumbai - 400701.</p><br>
+                    <p class="addr-sec">Landline - 022 4131 0099</p><br>
+                    <div class="map-logo">
+                        <div><img src="{{url_for('static',filename='images/googlemap.png')}}" alt="google-map"></div>
+                        <div>
+                            <p class="addr-sec"> Google Map Link</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!----------services section------------->
+    <section>
+
+        <div class="service">
+
+            <div id="companies" class="info">
+                <p>Companies</p>
+            </div>
+            <div id="jobs" class="info">
+                <p>Jobs</p>
+            </div>
+            <div id="articles" class="info">
+                <p>Articles</p>
+            </div>
+            <div id="webinars" class="info">
+                <p>Webinars</p>
+            </div>
+            <div id="forums" class="info">
+                <p>Forums</p>
+            </div>
+            <div id="notes" class="info">
+                <p>Application notes</p>
+            </div>
+
+        </div>
+
+
+    </section>
+    <!-------------footer section --------------->
+    <footer>
+        <div class="foot">
+            <div class="foot-logo"><img src="{{url_for('static',filename='images/footer-logo.png')}}" alt="footer-logo-ndt"></div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var successMessage = document.getElementById('successMessage');
+            var contactForm = document.getElementById('contactForm');
+            if (successMessage) {
+                setTimeout(function() {
+                    successMessage.style.display = 'none';
+                    contactForm.reset();
+                }, 5000);
+            }
+        });
+    </script>
+
+</body>
+
+</html>
